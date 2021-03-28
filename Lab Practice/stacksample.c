@@ -31,40 +31,55 @@ void pop(POINTER *Top)
 		if (Top != NULL)
 		{
 		  *Top = Top1->next;
-		  printf("Remove element %c\n", Top1->d);
+		  printf("\nRemove element %c\n", Top1->d);
 		  free(Top1);
 		}
 		else
-		  printf("Empty stack.\n");
+		  printf("\nEmpty stack.\n");
      }
 
 void print_stack(POINTER Top)
 /*Print the contents of the stack. Do not modify the stack in any way. */
 	{
-		printf("Start printing the stack ...\n");
+		printf("\nStart printing the stack ...\n");
 
 		/*insert you code here */
-
+    POINTER current = Top;
+    printf("\n\tTop ");
+    while (current != NULL) {
+      printf(" -> %c", current->d);
+      current = current -> next;
+    }
 	}
 
-void delete_stack(POINTER *Top)
-/* Delete the stack, i.e. remove all items from the stack */
-	{
-		printf("Start deleting the stack...\n");
+// void delete_stack(POINTER *Top)
+// /* Delete the stack, i.e. remove all items from the stack */
+// 	{
+// 		printf("\nStart deleting the stack...\n");
+//
+// 		/*insert you code here */
+//     POINTER temp = malloc(sizeof(ELEMENT));
+//     while (*Top != NULL) {
+//       temp = *Top;
+//       Top = Top -> next;
+//       pop(&temp);
+//     }
+//
+// 	}
 
-		/*insert you code here */
-
-	}
-
-void push_string(POINTER *Top,char *string)
+void push_string(POINTER *Top, char *string)
 /* Push a string of characters into a stack. */
 	{
-		printf("Start inserting the string ...\n");
+		printf("\nStart inserting the string ...\n");
 
 		/*insert you code here */
+    POINTER newNode = malloc(sizeof(ELEMENT));
+    newNode -> d = *string;
+    newNode -> next = *Top;
+    *Top = newNode;
 	}
 
-main()
+int main(void)
 	{
 
 		POINTER top;
@@ -81,8 +96,7 @@ main()
 		print_stack(top);
 		push_string(&top,C);
 		print_stack(top);
-		delete_stack(&top);
-		print_stack(top);
+		//delete_stack(&top);
+		//print_stack(top);
 
 	}
-
