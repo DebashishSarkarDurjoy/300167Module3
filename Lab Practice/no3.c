@@ -9,7 +9,7 @@ struct stack {
 };
 
 typedef struct stack ELEMENT;
-typedef ELEMENT *POINTER;
+typedef ELEMENT* POINTER;
 
 
 
@@ -17,15 +17,20 @@ int menu(void) {
   int input = 0;
   printf("\nChoose an option:\n");
 
-  printf("1. Push one character onto the stack: ");
+  printf("1. Push one character onto the stack.\n");
+  printf("2. Pop the top character from stack.\n");
+  printf("3. Push a string of characters into the stack.\n");
+  printf("4. Print the contents of the stack.\n");
+  printf("5. Delete the stack.\n");
+  printf(">>");
   scanf("%d", &input);
   return input;
 }
 
 ELEMENT* push(ELEMENT *Head) {
-  int input;
-  printf("\nEnter a number to push: ");
-  scanf("%d", &input);
+  stackitem input;
+  printf("\nEnter a character to push: ");
+  scanf(" %c", &input);
 
   if (Head == NULL) {
     ELEMENT* newNode = malloc(sizeof(ELEMENT));
@@ -48,26 +53,30 @@ void showStack(ELEMENT *Head) {
   printf("Top ");
   while(current != NULL) {
 
-    printf(" -> %d ", current -> d);
+    printf(" -> %c ", current -> d);
     current = current -> next;
   }
   printf("\n");
 }
 
+// ELEMENT* pop(POINTER *Top) {
+//
+// }
+
 int main(void) {
   int option;
-  POINTER *Top = NULL;
+  POINTER Top = NULL;
 
-  while(option > 0) {
+  while(option ) {
     option = menu();
     switch(option) {
       case 1: Top = push(Top);
-              showStack(Top);
               break;
-      case 2: Top = pop(Top);
-              showStack(Top);
+      // case 2: Top = pop(Top);
+      //         showStack(Top);
+      //         break;
+      case 4: showStack(Top);
               break;
-      
     }
   }
 
