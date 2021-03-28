@@ -15,7 +15,7 @@ typedef ELEMENT* POINTER;
 
 int menu(void) {
   int input = 0;
-  printf("\nChoose an option:\n");
+  printf("\nChoose an option:[-1 to exit]\n");
 
   printf("1. Push one character onto the stack.\n");
   printf("2. Pop the top character from stack.\n");
@@ -27,7 +27,7 @@ int menu(void) {
   return input;
 }
 
-ELEMENT* push(ELEMENT *Head) {
+void push(POINTER* Head) {
   stackitem input;
   printf("\nEnter a character to push: ");
   scanf(" %c", &input);
@@ -36,19 +36,17 @@ ELEMENT* push(ELEMENT *Head) {
     ELEMENT* newNode = malloc(sizeof(ELEMENT));
     newNode -> d = input;
     newNode -> next = NULL;
-    Head = newNode;
-    return newNode;
+    *Head = newNode;
   }
   else {
     ELEMENT *newNode = malloc(sizeof(ELEMENT));
-    newNode -> next = Head;
+    newNode -> next = *Head;
     newNode -> d = input;
-    Head = newNode;
-    return newNode;
+    *Head = newNode;
   }
 }
 
-void showStack(ELEMENT *Head) {
+void showStack(POINTER Head) {
   ELEMENT *current = Head;
   printf("Top ");
   while(current != NULL) {
@@ -67,10 +65,10 @@ int main(void) {
   int option;
   POINTER Top = NULL;
 
-  while(option ) {
+  while(option > 0) {
     option = menu();
     switch(option) {
-      case 1: Top = push(Top);
+      case 1: push(&Top);
               break;
       // case 2: Top = pop(Top);
       //         showStack(Top);
