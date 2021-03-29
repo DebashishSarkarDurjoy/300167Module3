@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Stack structure definition */
 typedef char stackitem;
@@ -10,7 +11,7 @@ struct stack *next;
 };
 
 typedef  struct stack ELEMENT;
-typedef  ELEMENT   *POINTER;
+typedef  ELEMENT* POINTER;
 
 
 void push(POINTER *Top, stackitem a)
@@ -52,20 +53,20 @@ void print_stack(POINTER Top)
     }
 	}
 
-// void delete_stack(POINTER *Top)
-// /* Delete the stack, i.e. remove all items from the stack */
-// 	{
-// 		printf("\nStart deleting the stack...\n");
-//
-// 		/*insert you code here */
-//     POINTER temp = malloc(sizeof(ELEMENT));
-//     while (*Top != NULL) {
-//       temp = *Top;
-//       Top = Top -> next;
-//       pop(&temp);
-//     }
-//
-// 	}
+void delete_stack(POINTER *Top)
+/* Delete the stack, i.e. remove all items from the stack */
+	{
+		printf("\nStart deleting the stack...\n");
+
+		/*insert you code here */
+    POINTER temp = *Top;
+    while (*Top != NULL) {
+      temp = *Top;
+      *Top = (*Top) -> next;
+      pop(&temp);
+    }
+
+	}
 
 void push_string(POINTER *Top, char *string)
 /* Push a string of characters into a stack. */
@@ -73,10 +74,15 @@ void push_string(POINTER *Top, char *string)
 		printf("\nStart inserting the string ...\n");
 
 		/*insert you code here */
-    POINTER newNode = malloc(sizeof(ELEMENT));
-    newNode -> d = *string;
-    newNode -> next = *Top;
-    *Top = newNode;
+    char stringChar;
+    stringChar = string[0];
+    int index = 0;
+    while(stringChar != '\0') {
+      push(Top, stringChar);
+      index++;
+      stringChar = string[index];
+    }
+
 	}
 
 int main(void)
@@ -96,7 +102,7 @@ int main(void)
 		print_stack(top);
 		push_string(&top,C);
 		print_stack(top);
-		//delete_stack(&top);
-		//print_stack(top);
+		delete_stack(&top);
+		print_stack(top);
 
 	}
